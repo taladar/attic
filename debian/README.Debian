@@ -1,0 +1,33 @@
+attic for Debian
+-----------------
+
+TL;DR: when updating this package, please update debian/attic.1 manually. The date and version number need to be updated, and any new commands or global options must also be added.
+
+DETAILS:
+
+This Debian version of this package includes a manpage under debian/attic.1. This manpage was originally created for attic version 0.13-1. Because of the many complexities of auto-generating manpages, the included file is specific to version 0.13, and must be manually altered for each upgrade of attic. What follows is the minutia of what I have done to create this manpage, as well as other alternatives I tried and the rationale for why I eventually chose this particular format.
+
+I will be submitting all of this upstream, so there's a possibility that this file will disappear. :)
+
+Attic does not include a manpage. The Sphinx documentation available under docs/ is able to generate a manpage using the included Makefile (cd docs && make man). However, while the generated file is technically a manpage (groff syntax), it is really a website forced into a manpage. It is not a traditional manpage, and actually quite confusing when laid out in this manner.
+
+My next recourse was the GNU utility help2man, generating the manpage under the override_dh_installman target. Here I encountered several problems. First and foremost, lintian was not happy with the generated output, giving a "manpage-has-errors-from-man" warning. Specifically, man was unable to format the page properly because of a very very long list of commands without spaces. Additionally, it did not follow some manpage conventions, and was rather awkward. Also, because attic does not have a --version option and help2man requires it, I had to wrangle the version out of debian/changelog. While I could have entered the version number manually, it seemed senseless--if this had to be updated manually for each release, the primary advantage of using help2man instead of a manually generated manpage was lost. I also could have created a patch for the generated file attic.1, but because the placement of the added/removed lines were in proximity of version-specific information (i.e., lines that said "0.13" in them), the patch would not have been usable for future releases, and again seemed pointless.
+
+I looked at several options, including using another Sphinx page, or creating attic.1.in and having it update various variables (date, version, etc.) via debian/rules. In doing this, however, I would lose the benefit of the automated help documentation from Python's ArgParser, and would have to manually update the page whenever a new option or command was implemented. Again, if manual manipulation is required, auto-generation seemed senseless.
+
+I finally settled on what I have done here. I created the included attic.1 using help2man, then manually edited it. Specifically, I used:
+	help2man --version-string=0.13 \
+		--name='deduplicating backups' \
+		--no-info \
+		--include=debian/attic.h2m \
+		debian/attic/usr/bin/attic >| ./debian/attic.1
+where attic.h2m was the SEE ALSO section. I then made several manipulations to the generated page. Listing all these changes is just confusing; if you really want to know, use the help2man command above and compare it to the included manpage.
+
+When this package is updated in the future, the following should be done for attic.1:
+    - change the date
+    - change the version
+    - add any new commands or global options
+
+Nice and simple. I hope.
+
+ -- Caitlin Matos <caitlin.matos@zoho.com>  Fri, 11 Jul 2014 16:09:28 -0400

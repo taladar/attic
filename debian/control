@@ -1,0 +1,23 @@
+Source: attic
+Section: admin
+Priority: extra
+Maintainer: Caitlin Matos <caitlin.matos@zoho.com> 
+Build-Depends: debhelper (>= 9), dh-python,
+		python3-dev, python3-msgpack (>= 0.1.10), python3-sphinx (>= 1.0.7),
+		libssl-dev (>= 1.0.0), libacl1-dev
+X-Python-Version: >= 3.2
+Standards-Version: 3.9.5
+Homepage: https://attic-backup.org/
+Vcs-Git: git://anonscm.debian.org/collab-maint/attic.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/attic.git
+
+Package: attic
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}, ${sphinxdoc:Depends},
+	    python3-msgpack (>= 0.1.10), libssl1.0.0
+Recommends: python3-llfuse
+Description: deduplicating backup program
+ Attic is a deduplicating backup program written in Python. The main
+ goal of Attic is to provide an efficient and secure way to backup
+ data. The data deduplication technique used makes Attic suitable for
+ daily backups since only actual changes are stored.

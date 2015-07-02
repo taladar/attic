@@ -1,0 +1,9 @@
+Document: attic
+Title: Debian attic documentation
+Author: Jonas Borgstrom
+Abstract: User documentation for attic
+Section: System/Administration
+
+Format: HTML
+Index: /usr/share/doc/attic/html/index.html
+Files: /usr/share/doc/attic/html/*.html

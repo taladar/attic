@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+# The command 'sphinx-build' refers to the python2 version;
+# currently there is no easier way to refer to the python3 version.
+SPHINXBUILD=/usr/share/sphinx/scripts/python3/sphinx-build
+
+%:
+	dh $@ --with python3,sphinxdoc --buildsystem=pybuild
+
+override_dh_installdocs:
+	dh_installdocs
+	PYTHONPATH=. $(SPHINXBUILD) -E -q -b html docs/ debian/attic/usr/share/doc/attic/html

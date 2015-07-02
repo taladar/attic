@@ -1,0 +1,69 @@
+attic (0.16-1) unstable; urgency=medium
+
+  * imported upstream version 0.16
+  * updated manpage according to README.Debian
+
+ -- Matthias Hörmann <mhoermann@saltation.de> Thu, 02 Jul 2015 12:33 +0200
+
+attic (0.13-1) unstable; urgency=medium
+
+  * added self as maintainer (Closes: #743829)
+  * merged changes from NMU
+  * imported upstream version 0.13
+  * debian/watch:
+    - added uupdate to watch file
+    - verifies pgp of upstream version
+  * debian/compat: bump to 9
+  * debian/control:
+    - updated homepage, canonicalized VCS fields
+    - replaced python3-openssl dependencies
+      with libssl-dev (BD), libssl1.0.0 (D) (Closes: #736721)
+    - added minimum versions for python (>= 3.2), ssl (>= 1.0.0),
+      python3-msgpack (>= 0.1.10) based on upstream documentation
+    - new build dependencies: debhelper, libacl1-dev, python3-sphinx
+  * debian/copyright: updated
+  * debian/rules: now uses dh, dh_python3, dh_sphinxdoc
+  * documentation:
+    - upstream changelog installed
+    - sphinx documentation installed as html, added to doc-base
+    - GitHub ribbons removed
+    - manpage created
+  * lintian override removed: package-uses-debhelper-but-lacks-build-depends
+
+ -- Caitlin Matos <caitlin.matos@zoho.com>  Mon, 14 Jul 2014 22:50:45 -0400
+
+attic (0.10-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Generate correct python interpreter dependencies with dh_python3
+    (Closes: #750920)
+    - Add dh-python to build-depends
+    - Add python3:Depends
+    - Add dh_python3 to debian/rules
+    - Cat dpkg-shlibdeps and dh_python3 substvar files together
+    - Adjust dpkg-gencontrol call to use the combined file
+  * Add lintian override for package-uses-debhelper-but-lacks-build-depends
+    since the package is not actually using debhelper
+
+ -- Scott Kitterman <scott@kitterman.com>  Wed, 11 Jun 2014 14:57:18 -0400
+
+attic (0.10-1) unstable; urgency=medium
+
+  * New upstream version.
+    - Checks excluded file patterns correctly.  closes: #737873.
+  * Add Recommends on python3-llfuse.  closes: #737360.
+
+ -- Clint Adams <clint@softwarefreedom.org>  Thu, 06 Feb 2014 11:46:40 -0500
+
+attic (0.8.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * Bump to Standards-Version 3.9.5.
+
+ -- Clint Adams <clint@debian.org>  Mon, 25 Nov 2013 09:06:12 -0500
+
+attic (0.7-1) unstable; urgency=low
+
+  * Initial release.  closes: #719526.
+
+ -- Clint Adams <clint@softwarefreedom.org>  Mon, 12 Aug 2013 12:07:41 -0400

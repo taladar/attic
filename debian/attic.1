@@ -1,0 +1,38 @@
+.fi
+.TH ATTIC "1" "July 2015" "attic 0.16" "User Commands"
+.SH NAME
+attic \- deduplicating backups
+.SH SYNOPSIS
+.B attic 
+[\-h|\-\-help] <command>
+.SH DESCRIPTION
+Attic is a deduplicating backup program written in Python. The main goal of Attic is to provide an efficient and secure way to backup data. The data deduplication technique used makes Attic suitable for daily backups since only the actual changes are stored.
+.SH OPTIONS
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+show a short usage summary and exit
+.SH COMMANDS
+The available commands are:
+.IP
+{serve, init, check, change\-passphrase, create, extract, delete, list, mount, info, prune, help}
+.PP
+Further information and options for each command is available via the
+.I \-\-help
+option. For example, more information about the 
+.I create
+command can be viewed with 
+.B attic create --help
+or
+.B attic help create. 
+.SH SEE ALSO
+The full documentation for
+.B attic
+can be found at 
+.I
+/usr/share/doc/attic/html/index.html. 
+This documentation is also available online at 
+.I http://www.attic-backup.org.
+.SH COPYRIGHT
+Caitlin Matos <caitlin.matos@zoho.com>, 2014. 
+.br
+Based on the documentation and code of Jonas Borgström <jonas@borgstrom.se>, 2010-2014.
